@@ -1,0 +1,85 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up sleep tracking",
+        "description": "Configure sleep tracking for one person. You can add multiple entries to track several people.",
+        "data": {
+          "person_name": "Person name",
+          "in_bed_sensor": "In-bed sensor"
+        },
+        "data_description": {
+          "person_name": "Display name used in entity and device names (e.g. Philipp).",
+          "in_bed_sensor": "Binary sensor that is ON when the person is in bed (e.g. a Withings or pressure-mat sensor)."
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure sleep tracking",
+        "description": "Update the person name or change the tracked sensor. The current sleep session state will be reset on reload.",
+        "data": {
+          "person_name": "Person name",
+          "in_bed_sensor": "In-bed sensor"
+        },
+        "data_description": {
+          "person_name": "Display name used in entity and device names.",
+          "in_bed_sensor": "Binary sensor that is ON when the person is in bed."
+        }
+      }
+    },
+    "error": {
+      "name_required": "Person name cannot be empty."
+    },
+    "abort": {
+      "already_configured": "Sleep tracking for this person is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Sleep tracking options",
+        "data": {
+          "interruption_threshold": "Interruption threshold (minutes)",
+          "min_sleep_duration": "Minimum sleep duration (minutes)"
+        },
+        "data_description": {
+          "interruption_threshold": "If the person leaves bed for less than this many minutes, it counts as a brief interruption and the original sleep start time is preserved. Increase this if nightly bathroom trips are splitting your sleep into short sessions.",
+          "min_sleep_duration": "A sleep session shorter than this is not recorded in Last Sleep Duration. Prevents accidental short naps from overwriting a full night's sleep."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "in_bed": {
+        "name": "In bed"
+      }
+    },
+    "sensor": {
+      "bed_start": {
+        "name": "Bed start"
+      },
+      "last_sleep_duration": {
+        "name": "Last sleep duration"
+      },
+      "last_wake_time": {
+        "name": "Last wake time"
+      },
+      "sleep_interruptions": {
+        "name": "Sleep interruptions"
+      }
+    }
+  },
+  "issues": {
+    "sensor_not_found": {
+      "title": "Tracked sensor not found for {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Tracked sensor not found",
+            "description": "The sensor **{entity_id}** configured for **{name}** does not exist or has not yet reported a state.\n\nIf you renamed or removed the sensor, use **Reconfigure** on the integration to select a new one.\n\nSubmitting this form dismisses the issue."
+          }
+        }
+      }
+    }
+  }
+}

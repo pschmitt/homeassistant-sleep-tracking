@@ -1,0 +1,16 @@
+{
+  "domain": "sleep_tracking",
+  "name": "Sleep Tracking",
+  "codeowners": [
+    "@pschmitt"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/pschmitt/homeassistant-sleep-tracking",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/pschmitt/homeassistant-sleep-tracking/issues",
+  "loggers": [
+    "custom_components.sleep_tracking"
+  ],
+  "version": "0.1.0"
+}
