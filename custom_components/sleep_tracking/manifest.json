@@ -12,5 +12,5 @@
   "loggers": [
     "custom_components.sleep_tracking"
   ],
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
