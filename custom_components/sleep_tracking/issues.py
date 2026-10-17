@@ -48,9 +48,7 @@ def _async_check_sensor(hass: HomeAssistant, entry: ConfigEntry) -> None:
         async_delete_sensor_issue(hass, entry)
         return
 
-    _LOGGER.warning(
-        "Tracked in-bed sensor %s for '%s' does not exist", sensor_id, entry.title
-    )
+    _LOGGER.warning("Tracked in-bed sensor %s for '%s' does not exist", sensor_id, entry.title)
     ir.async_create_issue(
         hass,
         DOMAIN,
@@ -102,9 +100,7 @@ def async_watch_sensor(hass: HomeAssistant, entry: ConfigEntry) -> CALLBACK_TYPE
             # Gone from the state machine — give its integration a chance to
             # bring it back before complaining.
             if cancel_recheck is None:
-                cancel_recheck = async_call_later(
-                    hass, SENSOR_GONE_GRACE_PERIOD, _async_recheck
-                )
+                cancel_recheck = async_call_later(hass, SENSOR_GONE_GRACE_PERIOD, _async_recheck)
             return
 
         # The sensor reported, so any outstanding repair is stale.
@@ -117,9 +113,7 @@ def async_watch_sensor(hass: HomeAssistant, entry: ConfigEntry) -> CALLBACK_TYPE
     def _async_initial_check(_hass: HomeAssistant) -> None:
         _async_check_sensor(hass, entry)
 
-    unsub_state = async_track_state_change_event(
-        hass, [sensor_id], _async_sensor_changed
-    )
+    unsub_state = async_track_state_change_event(hass, [sensor_id], _async_sensor_changed)
     cancel_started = async_at_started(hass, _async_initial_check)
 
     @callback

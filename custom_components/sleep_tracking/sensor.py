@@ -42,9 +42,7 @@ class _SleepSensor(SleepTrackingEntity, SensorEntity):
 
     async def async_added_to_hass(self) -> None:
         await super().async_added_to_hass()
-        self.async_on_remove(
-            self.tracker.async_add_listener(self.async_write_ha_state)
-        )
+        self.async_on_remove(self.tracker.async_add_listener(self.async_write_ha_state))
 
 
 class BedStartSensor(_SleepSensor):

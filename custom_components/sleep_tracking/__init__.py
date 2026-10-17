@@ -27,9 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     entry.async_on_unload(async_watch_sensor(hass, entry))
 
     entry.async_on_unload(
-        entry.add_update_listener(
-            lambda _hass, _entry: _entry.async_schedule_reload()
-        )
+        entry.add_update_listener(lambda _hass, _entry: _entry.async_schedule_reload())
     )
 
     return True

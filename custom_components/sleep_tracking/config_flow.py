@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 import voluptuous as vol
-
 from homeassistant.config_entries import (
     ConfigEntry,
     ConfigFlow,
@@ -62,9 +61,7 @@ def _options_schema(options: dict[str, Any]) -> vol.Schema:
         {
             vol.Required(
                 CONF_INTERRUPTION_THRESHOLD,
-                default=options.get(
-                    CONF_INTERRUPTION_THRESHOLD, DEFAULT_INTERRUPTION_THRESHOLD
-                ),
+                default=options.get(CONF_INTERRUPTION_THRESHOLD, DEFAULT_INTERRUPTION_THRESHOLD),
             ): NumberSelector(
                 NumberSelectorConfig(
                     min=MIN_INTERRUPTION_THRESHOLD,
@@ -76,9 +73,7 @@ def _options_schema(options: dict[str, Any]) -> vol.Schema:
             ),
             vol.Required(
                 CONF_MIN_SLEEP_DURATION,
-                default=options.get(
-                    CONF_MIN_SLEEP_DURATION, DEFAULT_MIN_SLEEP_DURATION
-                ),
+                default=options.get(CONF_MIN_SLEEP_DURATION, DEFAULT_MIN_SLEEP_DURATION),
             ): NumberSelector(
                 NumberSelectorConfig(
                     min=MIN_SLEEP_DURATION,
@@ -102,9 +97,7 @@ class SleepTrackingConfigFlow(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ConfigEntry) -> SleepTrackingOptionsFlow:
         return SleepTrackingOptionsFlow()
 
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         errors: dict[str, str] = {}
 
         if user_input is not None:
@@ -156,9 +149,7 @@ class SleepTrackingConfigFlow(ConfigFlow, domain=DOMAIN):
 class SleepTrackingOptionsFlow(OptionsFlow):
     """Handle options for Sleep Tracking."""
 
-    async def async_step_init(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
+    async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 

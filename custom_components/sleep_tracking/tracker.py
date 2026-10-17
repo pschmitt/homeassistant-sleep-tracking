@@ -57,9 +57,7 @@ class SleepTracker:
 
     @property
     def min_sleep_duration(self) -> timedelta:
-        minutes = self.config_entry.options.get(
-            CONF_MIN_SLEEP_DURATION, DEFAULT_MIN_SLEEP_DURATION
-        )
+        minutes = self.config_entry.options.get(CONF_MIN_SLEEP_DURATION, DEFAULT_MIN_SLEEP_DURATION)
         return timedelta(minutes=float(minutes))
 
     # ------------------------------------------------------------------

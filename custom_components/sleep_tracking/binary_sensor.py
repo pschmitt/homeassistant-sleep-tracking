@@ -56,9 +56,7 @@ class InBedBinarySensor(SleepTrackingEntity, RestoreEntity, BinarySensorEntity):
     async def async_added_to_hass(self) -> None:
         await super().async_added_to_hass()
         await self._async_restore_tracker_state()
-        self.async_on_remove(
-            self.tracker.async_add_listener(self.async_write_ha_state)
-        )
+        self.async_on_remove(self.tracker.async_add_listener(self.async_write_ha_state))
 
     async def _async_restore_tracker_state(self) -> None:
         last_state = await self.async_get_last_state()
